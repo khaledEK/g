@@ -1,0 +1,76 @@
+<!DOCTYPYE html>
+
+
+<html>
+
+  <head>
+
+    <title> Kobiax Gallery</title>
+    
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+    
+    
+  <body style="background-color: black">
+   
+    
+
+
+        <button  onmouseover="select()" onmouseout="deselect()" id="bt1" onclick="location.href = '3d.html';" style="margin-left: 24%; margin-top: 9%; font-family: Arial; font-size: 1700%; color: darkslategrey; background-image: url(3d.png); background-color: transparent; background-size: 90%; background-repeat: no-repeat; background-position: center; border: none; color: transparent"> llll </button>
+     
+
+      
+        <button  onmouseover="select2()" onmouseout="deselect2()" id="bt2" onclick="location.href = '2d.html';" style="margin-left: 11%; margin-top: 9%; font-family: Arial; font-size: 1930%; color: darkslategrey; background-image: url(ak.png); background-color: transparent; background-size: 90%; background-repeat: no-repeat; background-position: center; border: none; color: transparent"> llll </button>      
+    
+         <br>
+      
+          <section style = "margin-top:0%">
+        <button id="t1" style="margin-left: 30%;  font-family: Arial; font-size: 300%; color: grey; background-color: transparent; background-size: 90%;     text-align: center;  border: none; color: transparent"> 3D </button>    
+    
+   
+        <button id="t2" style="margin-left: 26.3%;  font-family: Arial; font-size: 300%; color: grey; background-color: transparent; background-size: 90%;     text-align: center;  border: none; color: transparent"> 2D </button>    
+    
+      
+       </section>
+
+    <script>    
+          function select() 
+          {           
+              document.getElementById("bt1").style.backgroundSize = "100%";  
+              document.getElementById("t1").style.color = "grey";        
+          } 
+          
+         
+          function deselect() 
+          {      
+             document.getElementById("bt1").style.backgroundSize = "90%";     
+           document.getElementById("t1").style.color = "transparent";   
+          }  
+          
+          
+          
+          
+        
+          function select2() 
+          {           
+            document.getElementById("bt2").style.backgroundSize = "100%";    
+          document.getElementById("t2").style.color = "grey";   
+           } 
+                     
+          function deselect2() 
+          {           
+               document.getElementById("bt2").style.backgroundSize = "90%";    
+                     document.getElementById("t2").style.color = "transparent";   
+      }  
+          
+                   
+          </script>
+          
+    
+</body>
+
+
+</html>
+
