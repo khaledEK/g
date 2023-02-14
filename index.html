@@ -8,39 +8,77 @@
     <title> Kobiax Gallery</title>
     
    <meta charset="UTF-8">
+
    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
 
   </head>
     
     
+  <style>
+  
+  
+  .btns_1920{
+
+    margin-top: 13.7%;  margin-left: 32%; 
+  }
+   
+  .btns_1366{
+
+    margin-top: 9%; margin-left: 26%; 
+  }
+
+  .btns{
+
+    font-family: Arial; background-color: transparent; background-size: 90%; background-repeat: no-repeat; background-position: center; border: none; color: transparent;
+  }
+
+  .txts{
+
+    font-family: Arial; font-size: 300%; color: grey; background-color: transparent; background-size: 90%; text-align: center;  border: none; color: transparent;
+  }
+
+
+
+  </style>
+
+
+
   <body style="background-color: black">
    
     
-     <div style= "width: 1366px; float: center; margin: auto">    
+  
+        <section id = "btns" class = "btns_1920">
 
-        <button  onmouseover="select()" onmouseout="deselect()" id="bt1" onclick="location.href = '3d.html';" style="margin-left: 24%; margin-top: 9%; font-family: Arial; font-size: 1700%; color: darkslategrey; background-image: url(3d.png); background-color: transparent; background-size: 90%; background-repeat: no-repeat; background-position: center; border: none; color: transparent"> llll </button>
+
+        <button  onmouseover="select()" onmouseout="deselect()" id="bt1" onclick="location.href = '3d.html';" class = "btns" style=" font-size: 1700%; background-image: url(3d.png)" > llll </button>
      
-
       
-        <button  onmouseover="select2()" onmouseout="deselect2()" id="bt2" onclick="location.href = '2d.html';" style="margin-left: 11%; margin-top: 9%; font-family: Arial; font-size: 1930%; color: darkslategrey; background-image: url(ak.png); background-color: transparent; background-size: 90%; background-repeat: no-repeat; background-position: center; border: none; color: transparent"> llll </button>      
+        <button  onmouseover="select2()" onmouseout="deselect2()" id="bt2" onclick="location.href = '2d.html';" class = "btns" style=" font-size: 1930%; margin-left: 11%; background-image: url(ak.png)"> llll </button>      
     
+
+        </section>
+
+
+
          <br>
       
         
-        <section style = "margin-top:0%">
-        
-         <button id="t1" style="margin-left: 30%;  font-family: Arial; font-size: 300%; color: grey; background-color: transparent; background-size: 90%;     text-align: center;  border: none; color: transparent"> 3D </button>    
+         <section style = "margin-top:0%">
+         
+          <button id="t1" class = "txts"> 3D </button>    
     
    
-         <button id="t2" style="margin-left: 26.3%;  font-family: Arial; font-size: 300%; color: grey; background-color: transparent; background-size: 90%;     text-align: center;  border: none; color: transparent"> 2D </button>    
+          <button id="t2" class = "txts"> 2D </button>    
     
-      
-        </section>
+         </section>
        
        
-       </div>
 
     <script>    
+
+
           function select() 
           {           
               document.getElementById("bt1").style.backgroundSize = "100%";  
@@ -55,8 +93,7 @@
           }  
           
           
-          
-          
+           
         
           function select2() 
           {           
@@ -69,9 +106,37 @@
                document.getElementById("bt2").style.backgroundSize = "90%";    
                      document.getElementById("t2").style.color = "transparent";   
       }  
+         
+      
+
+      
+      window.setInterval(adjust_size, 100);  
           
-                   
-          </script>
+          function adjust_size() 
+          {  
+
+           var w = window.outerWidth;
+  
+           if (w > 1700) {
+            
+              document.getElementById("btns").className = "btns_1920";
+              document.getElementById("t1").style.marginLeft = "37%";
+              document.getElementById("t2").style.marginLeft = "17.9%";
+ 
+               
+           } else if (w > 0 && w < 1400 ) 
+           {
+              
+              document.getElementById("btns").className = "btns_1366";
+              document.getElementById("t1").style.marginLeft = "33%";
+              document.getElementById("t2").style.marginLeft = "22.7%";
+    
+           }
+  
+          }
+      
+
+      </script>
           
     
 </body>
