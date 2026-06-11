@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Objects</title>
+    <script src="assets/babylon.js"></script>
+    <script src="assets/babylonjs.loaders.min.js"></script>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 20px; 
+            background: #111; 
+            color: #eee;
+            font-family: Arial, sans-serif;
+        }
+        h1 { 
+            text-align: center; 
+            margin-bottom: 30px; 
+        }
+        .models-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .model-container {
+
+             margin-top: 60px;
+
+            flex: 1;
+            min-width: 300px;
+        }
+        .model-title {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+        .canvas-container {
+            position: relative;
+            border: 1px solid #333;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #000;
+        }
+        canvas {
+            width: 100%;
+            height: 520px;
+            display: block;
+        }
+        .overlay {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Stack on mobile */
+        @media (max-width: 900px) {
+            .models-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+            canvas {
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive 3D Models</h1>
+
+    <div class="models-wrapper">
+
+        <!-- Model 1 -->
+        <div class="model-container">
+            <div class="model-title">Legoman</div>
+            <div class="canvas-container">
+                <canvas id="canvas1"></canvas>
+                <div class="overlay">Drag to rotate • Scroll to zoom</div>
+            </div>
+        </div>
+
+        <!-- Model 2 
+        <div class="model-container">
+            <div class="model-title">Model 2 - Title Here</div>
+            <div class="canvas-container">
+                <canvas id="canvas2"></canvas>
+                <div class="overlay">Drag to rotate • Scroll to zoom</div>
+            </div>
+        </div>
+       
+        -->
+
+        <!-- Model 3 
+        <div class="model-container">
+            <div class="model-title">Model 3 - Title Here</div>
+            <div class="canvas-container">
+                <canvas id="canvas3"></canvas>
+                <div class="overlay">Drag to rotate • Scroll to zoom</div>
+            </div>
+        </div>
+
+        -->
+
+
+    </div>
+
+    <script>
+        // Reusable function to create a viewer
+        async function createModelViewer(canvasId, modelUrl, title) {
+            const canvas = document.getElementById(canvasId);
+            const engine = new BABYLON.Engine(canvas, true);
+
+            const scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color4(0.08, 0.08, 0.08, 1);
+
+            // Camera
+            const camera = new BABYLON.ArcRotateCamera("camera", Math.PI / 1.8, Math.PI / 2.2, 5, BABYLON.Vector3.Zero(), scene);
+            camera.attachControl(canvas, true);
+            camera.lowerRadiusLimit = 1;
+            camera.upperRadiusLimit = 100;
+            camera.wheelPrecision = 150;        // Smooth & precise zoom
+            camera.wheelDeltaPercentage = 0.01;
+            camera.inertia = 0.7;
+
+            // Lighting
+            const hemi = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 0), scene);
+            hemi.intensity = 0.8;
+            const dir = new BABYLON.DirectionalLight("dir", new BABYLON.Vector3(-1, -2, -2), scene);
+            dir.intensity = 1.5;
+
+            // Load model
+            try {
+                console.log(`Loading ${title}...`);
+                await BABYLON.SceneLoader.AppendAsync("", modelUrl, scene);
+                console.log(`✅ ${title} loaded successfully!`);
+
+                // Auto-fit model
+                scene.meshes.forEach(m => {
+                    if (!m.parent) m.normalizeToUnitCube();
+                });
+
+
+
+                
+                // === Better initial zoom after model loads ===
+                camera.radius = 2;           // Smaller = closer view
+                camera.target = BABYLON.Vector3.Zero();
+
+
+
+
+            } catch (err) {
+                console.error(`❌ Failed to load ${title}:`, err);
+            }
+
+            // Render loop
+            engine.runRenderLoop(() => scene.render());
+
+            // Resize handler
+            window.addEventListener("resize", () => engine.resize());
+
+            return { scene, engine };
+        }
+
+
+
+
+        // Initialize both models
+        window.onload = async () => {
+            await createModelViewer(
+                "canvas1", 
+                "Legoman.glb", 
+                "Model 1"
+            );
+
+
+            /*
+
+            await createModelViewer(
+                "canvas2", 
+                "Legoman.glb", 
+                "Model 2"
+            );
+
+            */
+
+            /*
+
+            await createModelViewer(
+                "canvas3", 
+                "Legoman.glb", 
+                "Model 3"
+            );
+
+            */
+
+
+        };
+    </script>
+</body>
+</html>

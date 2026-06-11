@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360° Panoramas</title>
+    <link rel="stylesheet" href="assets/pannellum.css"/>
+    <script src="assets/pannellum.js"></script>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 20px; 
+            font-family: Arial, sans-serif; 
+            background: #111; 
+            color: #eee;
+        }
+
+        h1 { text-align: center; margin-bottom: 30px; }
+
+
+        h4 { text-align: center; margin-bottom: 30px; margin-top: 60px; font-family: Arial; font-weight: 100; }
+
+
+        .panorama-container {
+            max-width: 1200px;
+            margin: 79px auto;
+        }
+
+
+
+        .panorama-wrapper {
+            margin-bottom: 60px;
+        }
+        .panorama-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        #panorama1, #panorama2 /*, #panorama3 */ {                   /* Add panorama id here */                                                     
+            width: 100%;
+            height: 600px;
+            border: 7px solid #333;
+            background: #000;
+        }
+
+        /* Responsive: stack on small screens */
+        @media (max-width: 768px) {
+            #panorama1, #panorama2 {
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>My 360° Panoramas</h1>
+
+    <h4>Click and drag inside an image frame to look around, scroll outside frames to see more Panoramas </h4>
+
+    <!-- First Panorama -->
+    <div class="panorama-container">
+        <div class="panorama-title"></div>
+        <div id="panorama1"></div>
+    </div>
+
+    <!-- Second Panorama -->
+    <div class="panorama-container">
+        <div class="panorama-title"></div>
+        <div id="panorama2"></div>
+    </div>
+    
+
+
+   
+    <!-- Third Panorama 
+
+   <div class="panorama-container">
+        <div class="panorama-title">Panorama 3 - Title Here</div>
+        <div id="panorama3"></div>
+    </div>
+
+     -->
+   
+
+
+
+    <script>
+        // First Panorama
+        pannellum.viewer('panorama1', {
+            "type": "equirectangular",
+            "panorama": "my-pano.png",
+            "autoLoad": true,
+            "showZoomCtrl": true,
+            "showFullscreenCtrl": true,
+            "compass": true,
+            "title": "Bathroom",
+            "author": "Khaled EK",
+            "hfov": 100,
+            "yaw": 0,
+            "pitch": 0
+        });
+
+        // Second Panorama
+        pannellum.viewer('panorama2', {
+            "type": "equirectangular",
+            "panorama": "my-pano2.png",
+            "autoLoad": true,
+            "showZoomCtrl": true,
+            "showFullscreenCtrl": true,
+            "compass": true,
+            "title": "Bedroom",
+            "author": "Khaled EK",
+            "hfov": 100,
+            "yaw": 0,
+            "pitch": 0
+        });
+
+
+        /*
+
+       // third Panorama
+        pannellum.viewer('panorama3', {
+            "type": "equirectangular",
+            "panorama": "my-pano.png",
+            "autoLoad": true,
+            "showZoomCtrl": true,
+            "showFullscreenCtrl": true,
+            "compass": true,
+            "title": "Second Panorama",
+            "author": "Your Name",
+            "hfov": 100,
+            "yaw": 0,
+            "pitch": 0
+        });
+
+        */
+
+
+    </script>
+</body>
+</html>
